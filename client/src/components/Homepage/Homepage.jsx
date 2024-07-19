@@ -1,18 +1,21 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import Marquee from 'react-fast-marquee'
-import axios from 'axios'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Marquee from 'react-fast-marquee';
+// import axios from 'axios'
 
-import Line from '../../assets/Line.svg'
-import Pen from '../../assets/Pen.svg'
-import Blob from '../../assets/Blob.svg'
+import Line from '../../assets/Line.svg';
+import LineDark from '../../assets/LineDark.svg';
+import Pen from '../../assets/Pen.svg';
+import Blob from '../../assets/Blob.svg';
 
-import Button from '../Button/Button'
-import BlogCard from '../BlogCard/BlogCard'
+import Button from '../Button/Button';
+import BlogCard from '../BlogCard/BlogCard';
 
-import { arrayOfBlogs } from '../../test/BlogCardTestData'
+import { arrayOfBlogs } from '../../test/BlogCardTestData';
 
 const Homepage = () => {
+    const darkMode = useSelector((state) => state.theme.darkMode)
+    const currLine = darkMode ? LineDark : Line
     // const [blogs, setBlogs] = useState([]);
 
     // Using Axios
@@ -25,35 +28,55 @@ const Homepage = () => {
     // useEffect(() => {
     //     fetchMoviesWithAxios(); // or fetchMoviesWithAxios();
     // }, []);
-    console.log(arrayOfBlogs[1].tags);
+
+    const gradientColor = darkMode ? '#191919' : 'white';
 
     return (
-        <div className='w-full flex justify-center items-center relative flex-col dark:bg-black' >
-            <div className='relative w-full h-[400px] flex justify-center items-center flex-col'>
-                <img src={Blob} alt="" className='w-full absolute -top-5 -z-10' />
+        <div className={`w-full flex justify-center items-center relative flex-col ${darkMode ? 'dark:bg-darkBg' : ''}`}>
+            <div className="relative w-full h-[400px] flex justify-center items-center flex-col">
+                <img src={Blob} alt="" className="w-full absolute -top-5 z-10" />
 
-                <div className='w-fit relative flex justify-center items-center text-black mt-10'>
-                    <h1 className=' lg:text-7xl font-[Diastema]' >Stories that connect <br />Ideas that <span className='font-[Pinyon] lg:text-8xl'>Inspire</span></h1>
-                    <img src={Line} alt="" className='absolute bottom-0 right-0 ' />
+                <div className="w-fit relative flex justify-center items-center text-black mt-10 z-10 dark:text-white">
+                    <h1 className="lg:text-7xl font-[Diastema] ">
+                        Stories that connect <br />
+                        Ideas that <span className="font-[Pinyon] lg:text-8xl">Inspire</span>
+                    </h1>
+                    <img src={currLine} alt="" className="absolute bottom-0 right-0" />
                 </div>
 
-                <Button text="Write" textClassName="font-[GillSans] text-lg text-black" className="lg:w-[7rem] lg:h-[3rem] bg-buttonBg rounded-full flex justify-center items-center pt-1 mt-10" img={Pen} />
-
+                <Button
+                    text="Write"
+                    textClassName="font-[GillSans] text-lg text-black dark:text-white"
+                    className="lg:w-[7rem] lg:h-[3rem] bg-buttonBg rounded-full flex justify-center items-center pt-1 mt-10 z-10"
+                    img={Pen}
+                />
             </div>
 
-            {/* <div className='max-w-full h-[300px] relative overflow-hidden flex border-2 border-red-400'> */}
-            {/* <div className='w-[150px] h-full absolute bg-gradient-to-r from-white to-white/10 z-10'></div>
-                <div className='w-[150px] h-full absolute right-0 bg-gradient-to-r from-white/10 to-white z-10'></div> */}
-
-            <Marquee className='h-[300px] overflow-hidden' pauseOnHover gradient gradientColor='white' gradientWidth={200}>
+            <Marquee
+                className="h-[300px] overflow-hidden"
+                pauseOnHover
+                gradient
+                gradientColor={gradientColor}
+                gradientWidth={200}
+            >
                 {arrayOfBlogs.map((blog, index) => (
-                    <BlogCard key={blog.id} profilePicture={blog.profilePicture} title={blog.title} author={blog.author} date={blog.date} content={blog.description} likeCount={blog.likeCount} commentCount={blog.commentCount} banner={blog.banner} tags={blog.tags} className={index % 2 === 0 ? 'mt-8' : null} />
+                    <BlogCard
+                        key={blog.id}
+                        profilePicture={blog.profilePicture}
+                        title={blog.title}
+                        author={blog.author}
+                        date={blog.date}
+                        content={blog.description}
+                        likeCount={blog.likeCount}
+                        commentCount={blog.commentCount}
+                        banner={blog.banner}
+                        tags={blog.tags}
+                        className={index % 2 === 0 ? 'mt-8' : null}
+                    />
                 ))}
             </Marquee>
+        </div>
+    );
+};
 
-
-        </ div >
-    )
-}
-
-export default Homepage
+export default Homepage;

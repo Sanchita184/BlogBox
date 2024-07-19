@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <div className={`h-screen w-full flex items-center flex-col ${darkMode ? 'dark' : ''}`}>
-      <div className='h-full w-full flex items-center flex-col dark:bg-black'>
+      <div className='h-full w-full flex items-center flex-col dark:bg-darkBg'>
         <div className='md:w-2/3 lg:h-full lg:w-1/2'>
           <Navbar />
           <Homepage />

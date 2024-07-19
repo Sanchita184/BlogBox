@@ -17,7 +17,8 @@ export default {
         lightText: '#606470',
         darkText: '#000000',
         buttonBg: '#6A7EFC',
-        border: '#CACACA'
+        border: '#CACACA',
+        darkBg: '#191919'
       },
     },
   },
