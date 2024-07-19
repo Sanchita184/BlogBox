@@ -1,5 +1,4 @@
 import React from 'react'
-import Tag from '../Tag/Tag'
 
 import FollowIcon from '../../assets/Follow.svg'
 import HeartIcon from '../../assets/Heart.svg'
@@ -67,9 +66,9 @@ const BlogCard = (props) => {
                     </div>
 
                     <div className='h-1/3 w-full py-2 px-2 font-[GillSans] text-xs flex justify-center flex-wrap'>
-                        {tagsArray.map((tag, index) => {
-                            <Tag key={index} tag={tag} />
-                        })}
+                        {tagsArray.map((tag, index) => (
+                            <p key={index} className='mr-2 bg-gray-500 rounded-lg flex items-center'>{tag}</p>
+                        ))}
                     </div>
                 </div>
 
