@@ -6,7 +6,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px'
+    },
+    extend: {
+      colors: {
+        lightText: '#606470',
+        darkText: '#000000',
+        buttonBg: '#6A7EFC',
+        border: '#CACACA'
+      },
+    },
   },
   plugins: [],
 }
