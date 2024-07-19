@@ -10,19 +10,22 @@ import Blob from '../../assets/Blob.svg'
 import Button from '../Button/Button'
 import BlogCard from '../BlogCard/BlogCard'
 
+import { arrayOfBlogs } from '../../test/BlogCardTestData'
+
 const Homepage = () => {
-    const [blogs, setBlogs] = useState([]);
+    // const [blogs, setBlogs] = useState([]);
 
     // Using Axios
-    const fetchMoviesWithAxios = () => {
-        axios.get('https://dummyapi.online/api/blogposts')
-            .then(response => setBlogs(response.data))
-            .catch(error => console.error('Error:', error));
-    };
+    // const fetchMoviesWithAxios = () => {
+    //     axios.get('https://dummyapi.online/api/blogposts')
+    //         .then(response => setBlogs(response.data))
+    //         .catch(error => console.error('Error:', error));
+    // };
 
-    useEffect(() => {
-        fetchMoviesWithAxios(); // or fetchMoviesWithAxios();
-    }, []);
+    // useEffect(() => {
+    //     fetchMoviesWithAxios(); // or fetchMoviesWithAxios();
+    // }, []);
+    console.log(arrayOfBlogs[1].tags);
 
     return (
         <div className='w-full flex justify-center items-center relative flex-col dark:bg-black' >
@@ -42,9 +45,9 @@ const Homepage = () => {
             {/* <div className='w-[150px] h-full absolute bg-gradient-to-r from-white to-white/10 z-10'></div>
                 <div className='w-[150px] h-full absolute right-0 bg-gradient-to-r from-white/10 to-white z-10'></div> */}
 
-            <Marquee className='h-[300px] overflow-hidden border-2 border-red-400' pauseOnHover gradient gradientColor='white' gradientWidth={200}>
-                {blogs.map(blog => (
-                    <BlogCard key={blog.id} title={blog.title} author={blog.author} date={blog.date_published} content={blog.content} />
+            <Marquee className='h-[300px] overflow-hidden' pauseOnHover gradient gradientColor='white' gradientWidth={200}>
+                {arrayOfBlogs.map((blog, index) => (
+                    <BlogCard key={blog.id} profilePicture={blog.profilePicture} title={blog.title} author={blog.author} date={blog.date} content={blog.description} likeCount={blog.likeCount} commentCount={blog.commentCount} banner={blog.banner} tags={blog.tags} className={index % 2 === 0 ? 'mt-8' : null} />
                 ))}
             </Marquee>
 
