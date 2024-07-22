@@ -1,7 +1,9 @@
+import CreateBlog from './components/CreateBlog/CreateBlog'
 import Homepage from './components/Homepage/Homepage'
 import Navbar from './components/Navbar/Navbar'
 import { useSelector } from 'react-redux'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import TestMyFeed from './components/TestMyFeed'
 const App = () => {
   const darkMode = useSelector(state => state.theme.darkMode)
 
@@ -14,9 +16,9 @@ const App = () => {
             <Routes>
               <Route path='/' element={<Homepage />} />
               <Route path='/profile' element={<Navbar />} />
-              <Route path='/my-feed' element={<Navbar />} />
+              <Route path='/myFeed' element={<TestMyFeed />} />
               <Route path='/explore' element={<Navbar />} />
-              <Route path='/create-blog' element={<Navbar />} />
+              <Route path='/submit-form' element={<CreateBlog />} />
             </Routes>
           </div>
         </div>

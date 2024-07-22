@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import themeReducer from './features/themeSlice/themeSlice'
+import postsReducer from './features/postsSlice'
 
 const store = configureStore({
     reducer: {
-        theme: themeReducer
+        theme: themeReducer,
+        posts: postsReducer
     }
 })
 
