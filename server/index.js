@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
@@ -11,6 +12,6 @@ app.use(cors())
 
 connectDB();
 
-app.listen('5050', () => {
+app.listen(PORT, () => {
     console.log(`listening to http://localhost:${process.env.PORT}`);
 })
